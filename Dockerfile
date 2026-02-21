@@ -52,9 +52,7 @@ RUN pnpm ui:build
 ENV NODE_ENV=production
 
 # Railway entrypoint: start as root to fix volume permissions, then drop to node user.
-# The entrypoint script chown's /data to node:node, then exec's the gateway as node.
-COPY entrypoint.sh /app/entrypoint.sh
-RUN chmod +x /app/entrypoint.sh
-
 USER root
+COPY --chmod=755 entrypoint.sh /app/entrypoint.sh
+
 CMD ["/app/entrypoint.sh"]
