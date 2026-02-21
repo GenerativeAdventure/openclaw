@@ -19,9 +19,16 @@ if [ -f "$CONFIG_FILE" ]; then
     if (!cfg.gateway) cfg.gateway = {};
     if (!cfg.gateway.controlUi) cfg.gateway.controlUi = {};
     cfg.gateway.controlUi.dangerouslyDisableDeviceAuth = true;
-    cfg.gateway.controlUi.allowedOrigins = ['*'];
+    cfg.gateway.controlUi.allowedOrigins = [
+      '*',
+      'http://localhost', 'http://localhost:3000', 'http://localhost:5173',
+      'http://localhost:5500', 'http://localhost:8000', 'http://localhost:8080',
+      'https://localhost', 'https://localhost:3000', 'https://localhost:5173',
+      'http://127.0.0.1', 'http://127.0.0.1:3000', 'http://127.0.0.1:5173',
+      'http://127.0.0.1:5500', 'http://127.0.0.1:8000', 'http://127.0.0.1:8080',
+    ];
     fs.writeFileSync('$CONFIG_FILE', JSON.stringify(cfg, null, 2));
-    console.log('Patched gateway config: disabled device auth, allowed all origins');
+    console.log('Patched gateway config: disabled device auth, allowed localhost origins');
   " || true
 else
   # Create minimal config with control UI settings
@@ -31,7 +38,14 @@ else
       gateway: {
         controlUi: {
           dangerouslyDisableDeviceAuth: true,
-          allowedOrigins: ['*']
+          allowedOrigins: [
+            '*',
+            'http://localhost', 'http://localhost:3000', 'http://localhost:5173',
+            'http://localhost:5500', 'http://localhost:8000', 'http://localhost:8080',
+            'https://localhost', 'https://localhost:3000', 'https://localhost:5173',
+            'http://127.0.0.1', 'http://127.0.0.1:3000', 'http://127.0.0.1:5173',
+            'http://127.0.0.1:5500', 'http://127.0.0.1:8000', 'http://127.0.0.1:8080',
+          ]
         }
       }
     };
