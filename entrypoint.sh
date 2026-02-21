@@ -5,4 +5,6 @@ if [ -d "/data" ]; then
 fi
 
 # Switch to node user and start the gateway
-exec su -s /bin/sh node -c "node /app/openclaw.mjs gateway --allow-unconfigured --bind lan"
+# --bind lan: listen on 0.0.0.0 (required for Railway's proxy)
+# --port: use Railway's PORT env var (default 8080)
+exec su -s /bin/sh node -c "node /app/openclaw.mjs gateway --allow-unconfigured --bind lan --port ${PORT:-8080}"
