@@ -1,0 +1,319 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.2.20",
+    "lastTouchedAt": "2026-02-23T00:00:00.000Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-02-21T00:21:39.773Z",
+    "lastRunVersion": "2026.2.20",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "anthropic:default": {
+        "provider": "anthropic",
+        "mode": "api_key"
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "workspace": "/data/workspace-dwight",
+      "contextPruning": {
+        "mode": "cache-ttl",
+        "ttl": "1h"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "heartbeat": {
+        "every": "30m"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    },
+    "list": [
+      {
+        "id": "dwight",
+        "name": "Dwight Schrute",
+        "workspace": "/data/workspace-dwight",
+        "agentDir": "/data/agents/dwight",
+        "model": {
+          "primary": "anthropic/claude-haiku-4-5-20251001"
+        },
+        "identity": {
+          "name": "Dwight",
+          "emoji": "\ud83c\udfaf"
+        },
+        "groupChat": {
+          "mentionPatterns": ["@dwight", "dwight", "Dwight"]
+        },
+        "tools": {
+          "allow": [
+            "group:sessions",
+            "message"
+          ]
+        }
+      },
+      {
+        "id": "jim",
+        "name": "Jim Halpert",
+        "workspace": "/data/workspace-jim",
+        "agentDir": "/data/agents/jim",
+        "model": {
+          "primary": "anthropic/claude-haiku-4-5-20251001"
+        },
+        "identity": {
+          "name": "Jim",
+          "emoji": "\ud83d\ude80"
+        },
+        "groupChat": {
+          "mentionPatterns": ["@jim", "jim", "Jim"]
+        },
+        "tools": {
+          "allow": [
+            "group:sessions",
+            "message",
+            "github"
+          ]
+        }
+      },
+      {
+        "id": "oscar",
+        "name": "Oscar Martinez",
+        "workspace": "/data/workspace-oscar",
+        "agentDir": "/data/agents/oscar",
+        "model": {
+          "primary": "anthropic/claude-haiku-4-5-20251001"
+        },
+        "identity": {
+          "name": "Oscar",
+          "emoji": "\ud83d\udccb"
+        },
+        "groupChat": {
+          "mentionPatterns": ["@oscar", "oscar", "Oscar"]
+        },
+        "tools": {
+          "allow": [
+            "exec",
+            "group:sessions",
+            "message",
+            "github"
+          ]
+        }
+      },
+      {
+        "id": "kelly",
+        "name": "Kelly Kapoor",
+        "workspace": "/data/workspace-kelly",
+        "agentDir": "/data/agents/kelly",
+        "model": {
+          "primary": "anthropic/claude-haiku-4-5-20251001"
+        },
+        "identity": {
+          "name": "Kelly",
+          "emoji": "\ud83d\udce3"
+        },
+        "groupChat": {
+          "mentionPatterns": ["@kelly", "kelly", "Kelly"]
+        },
+        "tools": {
+          "allow": [
+            "group:sessions",
+            "message"
+          ]
+        }
+      },
+      {
+        "id": "pam",
+        "name": "Pam Beesly",
+        "workspace": "/data/workspace-pam",
+        "agentDir": "/data/agents/pam",
+        "model": {
+          "primary": "anthropic/claude-haiku-4-5-20251001"
+        },
+        "identity": {
+          "name": "Pam",
+          "emoji": "\ud83c\udfa8"
+        },
+        "groupChat": {
+          "mentionPatterns": ["@pam", "pam", "Pam"]
+        },
+        "tools": {
+          "allow": [
+            "group:sessions",
+            "message"
+          ]
+        }
+      }
+    ]
+  },
+  "bindings": [
+    {
+      "agentId": "dwight",
+      "match": { "channel": "telegram", "accountId": "dwight", "peer": { "kind": "group", "id": "<CEO_DIRECTIVES_ID>" } }
+    },
+    {
+      "agentId": "dwight",
+      "match": { "channel": "telegram", "accountId": "dwight", "peer": { "kind": "group", "id": "<PRODUCT_ROOM_ID>" } }
+    },
+    {
+      "agentId": "jim",
+      "match": { "channel": "telegram", "accountId": "jim", "peer": { "kind": "group", "id": "<PRODUCT_ROOM_ID>" } }
+    },
+    {
+      "agentId": "jim",
+      "match": { "channel": "telegram", "accountId": "jim", "peer": { "kind": "group", "id": "<DEV_HANDOFF_ID>" } }
+    },
+    {
+      "agentId": "oscar",
+      "match": { "channel": "telegram", "accountId": "oscar", "peer": { "kind": "group", "id": "<PRODUCT_ROOM_ID>" } }
+    },
+    {
+      "agentId": "oscar",
+      "match": { "channel": "telegram", "accountId": "oscar", "peer": { "kind": "group", "id": "<TICKETS_ID>" } }
+    },
+    {
+      "agentId": "kelly",
+      "match": { "channel": "telegram", "accountId": "kelly", "peer": { "kind": "group", "id": "<PRODUCT_ROOM_ID>" } }
+    },
+    {
+      "agentId": "pam",
+      "match": { "channel": "telegram", "accountId": "pam", "peer": { "kind": "group", "id": "<PRODUCT_ROOM_ID>" } }
+    },
+    {
+      "agentId": "pam",
+      "match": { "channel": "telegram", "accountId": "pam", "peer": { "kind": "group", "id": "<DEV_HANDOFF_ID>" } }
+    },
+    {
+      "agentId": "dwight",
+      "match": { "channel": "telegram", "accountId": "dwight" }
+    },
+    {
+      "agentId": "jim",
+      "match": { "channel": "telegram", "accountId": "jim" }
+    },
+    {
+      "agentId": "oscar",
+      "match": { "channel": "telegram", "accountId": "oscar" }
+    },
+    {
+      "agentId": "kelly",
+      "match": { "channel": "telegram", "accountId": "kelly" }
+    },
+    {
+      "agentId": "pam",
+      "match": { "channel": "telegram", "accountId": "pam" }
+    }
+  ],
+  "messages": {
+    "responsePrefix": "auto",
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "groupPolicy": "open",
+      "dmPolicy": "open",
+      "allowFrom": ["*"],
+      "replyToMode": "off",
+      "accounts": {
+        "dwight": {
+          "enabled": true,
+          "botToken": "<DWIGHT_BOT_TOKEN>"
+        },
+        "jim": {
+          "enabled": true,
+          "botToken": "<JIM_BOT_TOKEN>"
+        },
+        "oscar": {
+          "enabled": true,
+          "botToken": "<OSCAR_BOT_TOKEN>"
+        },
+        "kelly": {
+          "enabled": true,
+          "botToken": "<KELLY_BOT_TOKEN>"
+        },
+        "pam": {
+          "enabled": true,
+          "botToken": "<PAM_BOT_TOKEN>"
+        }
+      },
+      "groups": {
+        "<CEO_DIRECTIVES_ID>": {
+          "requireMention": false
+        },
+        "<PRODUCT_ROOM_ID>": {
+          "requireMention": true
+        },
+        "<TICKETS_ID>": {
+          "requireMention": false
+        },
+        "<DEV_HANDOFF_ID>": {
+          "requireMention": true
+        }
+      }
+    }
+  },
+  "hooks": {
+    "enabled": true,
+    "token": "<OPENCLAW_HOOKS_TOKEN>",
+    "mappings": {
+      "linear": {
+        "match": { "source": "linear" },
+        "action": "agent",
+        "agentId": "oscar",
+        "messageTemplate": "Linear ticket moved to Ready:\n\nTicket: {{data.identifier}}\nTitle: {{data.title}}\nDescription: {{data.description}}\n\nPlease trigger the GitHub Action to implement this ticket using the github skill:\ngh api repos/GenerativeAdventure/park-city-families/dispatches -f event_type=linear-ticket-ready -f 'client_payload[ticket_id]={{data.identifier}}' -f 'client_payload[issue_id]={{data.id}}' -f 'client_payload[title]={{data.title}}' -f 'client_payload[description]={{data.description}}'",
+        "deliver": true,
+        "channel": "telegram",
+        "to": "<TICKETS_ID>"
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "controlUi": {
+      "allowedOrigins": [
+        "*",
+        "http://localhost",
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "http://localhost:5500",
+        "http://localhost:8000",
+        "http://localhost:8080",
+        "https://localhost",
+        "https://localhost:3000",
+        "https://localhost:5173",
+        "http://127.0.0.1",
+        "http://127.0.0.1:3000",
+        "http://127.0.0.1:5173",
+        "http://127.0.0.1:5500",
+        "http://127.0.0.1:8000",
+        "http://127.0.0.1:8080"
+      ],
+      "dangerouslyDisableDeviceAuth": true
+    },
+    "auth": {
+      "mode": "token",
+      "token": "<GATEWAY_AUTH_TOKEN>"
+    },
+    "remote": {
+      "token": "<GATEWAY_AUTH_TOKEN>"
+    }
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    }
+  }
+}
